@@ -8,10 +8,12 @@ import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import { useStyles } from './styles';
+import { useShop } from '../../context/shop';
 
 function Menu() {
     const navigation = useNavigate()
     const classes = useStyles();
+    const { productsShop } = useShop();
 
     const navigateShop = () => {
         navigation('/sacola')
@@ -21,28 +23,28 @@ function Menu() {
         navigation('/')
     }
 
-    return (
+    return(
         <>
-            <AppBar position='fixed' color='default' elevation={10} className={classes.appBar}>
-                <Toolbar className={classes.toolbar}>
-                    <Typography variant='h6' color='inherit' noWrap className={classes.toolbarTitle}>
-                        Biopark Connect
-                    </Typography>
+        <AppBar position='fixed' color='default' elevation={10} className={classes.appBar}>
+            <Toolbar className={classes.toolbar}>
+                <Typography variant='h6' color='inherit' noWrap className={classes.toolbarTitle}>
+                    Biopark Connect
+                </Typography>
 
-                    <Link variant="button" color="textPrimary" className={classes.link} onClick={navigateHome}>
-                        Home
-                    </Link>
+                <Link variant="button" color="textPrimary" className={classes.link} onClick={navigateHome}>
+                    Home
+                </Link>
 
-                    <Link variant="button" color="textPrimary" className={classes.link} onClick={navigateShop}>
-                        <Badge badgeContent={1} color="primary">
-                            <ShoppingCartIcon sx={{ mr: 2 }} />
-                        </Badge>
-                    </Link>
-                </Toolbar>
+                <Link variant="button" color="textPrimary" className={classes.link} onClick={navigateShop}>
+                    <Badge badgeContent={productsShop.length} color="primary">
+                        <ShoppingCartIcon sx={{ mr:2 }} />
+                    </Badge>
+                </Link>
+            </Toolbar>  
             </AppBar>
 
-            <div style={{ padding: 45 }}></div>
-        </>
+            <div style={{ padding: 40 }}></div>
+            </>
     )
 }
 

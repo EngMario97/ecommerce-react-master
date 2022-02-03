@@ -4,10 +4,12 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
 import Menu from '../../components/Menu';
-import { FormatCurrency } from '../../utils/FormatCurrency';
+
+import { FormatCurrency } from '../../utils/formatCurrency';
 
 import api from '../../services/api';
 
@@ -23,8 +25,8 @@ function Home() {
     const { data } = await api.get('/products');
 
     const formatData = data.map(prod => {
-      return { ...prod, value: FormatCurrency(prod.value) }
-    });
+      return {...prod, value: FormatCurrency(prod.value)}
+    })
 
     setProducts(formatData);
   }, []);
@@ -40,9 +42,9 @@ function Home() {
       <Grid container spacing={4}>
         {products.map(product => (
           <Grid item key={product.id} xs={12} sm={6} md={4}>
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <Card sx={{height: '100%', display: 'flex', flexDirection: 'column'}}>
               <CardActionArea onClick={() => navigateProduct(product.id)}>
-                <CardMedia
+                <CardMedia 
                   component="img"
                   sx={{ pt: "56.25%" }}
                   image={product.image}
@@ -52,10 +54,11 @@ function Home() {
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography variant='h5' component='h2'>
-                    {product.title}
+                  {product.title}
                   </Typography>
+
                   <Typography variant='h6' component='h3'>
-                    {product.value}
+                  {product.value}
                   </Typography>
                 </CardContent>
               </CardActionArea>
