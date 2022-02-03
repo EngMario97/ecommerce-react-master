@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import Menu from '../../components/Menu';
-import { FormartCurrency } from '../../utils/formatCurrency';
+import { FormatCurrency } from '../../utils/FormatCurrency';
 
 import api from '../../services/api';
 
@@ -23,7 +23,7 @@ function Home() {
     const { data } = await api.get('/products');
 
     const formatData = data.map(prod => {
-      return { ...prod, value: FormartCurrency(prod.value) }
+      return { ...prod, value: FormatCurrency(prod.value) }
     });
 
     setProducts(formatData);
